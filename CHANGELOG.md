@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.1 - 2026-11-08
+
+- Skip game objects the engine is destroying (PendingKill / Unreachable),
+  e.g. villagers streaming out, before touching them. Hardening after a
+  crash inside UE4SS during a Lua call (mod not identified from the stack).
+- The background tick does nothing while no option is enabled.
+
 ## 1.0.0 - 2026-11-07
 
 First public release.

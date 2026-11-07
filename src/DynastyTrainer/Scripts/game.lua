@@ -17,9 +17,18 @@ local COIN_ID = "Coin"
 local COIN_SCALE = 10          -- the game stores coins in tenths
 local INT32_MAX = 2147483647
 
+-- EInternalObjectFlags::PendingKill | Unreachable: objects the engine is
+-- destroying (e.g. NPCs streaming out). Touching them can crash inside UE4SS.
+local DYING = 0x30000000
+
 local function valid(o)
     local tp = type(o)
-    return (tp == "userdata" or tp == "table") and o:IsValid() == true
+    if not ((tp == "userdata" or tp == "table") and o:IsValid() == true) then return false end
+    if o.HasAnyInternalFlags then
+        local ok, dying = pcall(o.HasAnyInternalFlags, o, DYING)
+        if ok and dying then return false end
+    end
+    return true
 end
 M.valid = valid
 

@@ -5,7 +5,7 @@
 --   menu.lua     the in-game menu (shared ModMenu library)
 --   i18n.lua     translations; texts live in locales/<code>.lua
 
-local VERSION = "1.0.0"
+local VERSION = "1.0.1"
 print("[DynastyTrainer] version " .. VERSION .. "\n")
 
 if not package.searchpath("ModMenu.ModMenu", package.path) then

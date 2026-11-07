@@ -221,7 +221,14 @@ local function safe(where, fn, ...)
     if not ok then report(where, e) end
 end
 
+local function anythingOn()
+    return S.god or S.stamina or S.hunger or S.thirst or S.debuffs or S.weight or S.temperature
+        or S.freezeTime or S.heraldNext or S.speed ~= 1 or S.jump ~= 1 or S.gravity ~= 1
+        or skip.remaining > 0 or next(originals) ~= nil
+end
+
 local function slowTick()
+    if not anythingOn() then return end
     local okP, pawn = pcall(game.player)
     if not okP then return end
     local okS, stats = pcall(game.stats)
