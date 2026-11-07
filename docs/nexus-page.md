@@ -8,7 +8,7 @@ requirements and a description that matches what the mod really does
 
 - **Name:** Dynasty Trainer - In-Game Cheat Menu (UE4SS)
 - **Version:** 1.0.0
-- **Summary:** In-game trainer menu (F4) for singleplayer: unlimited health/stamina, no hunger/thirst, coins and items, skills, reputation, technology, time, villager limit and skills, king's herald, flying, no clip, teleport. 18 languages. Plain Lua, no executables.
+- **Summary:** In-game trainer menu (F4) for Medieval Dynasty singleplayer: unlimited health, stamina, food and water, coins and items, skills, reputation, technology, time control, villager skills and limit, king's herald, flying, no clip and teleport. 18 languages. Plain UE4SS Lua mod, source on GitHub. Tested on Linux/Proton and Steam Deck setup.
 - **Category:** Cheats and God items (or the closest "Cheats" category on the Medieval Dynasty page)
 - **Language of the mod page:** English
 - **Tags to consider:** Cheats, Gameplay, User Interface, Translation (if offered); add only tags that really apply.
@@ -54,9 +54,9 @@ An in-game trainer menu for [b]Medieval Dynasty[/b] (singleplayer). Press [b]F4[
 
 [size=4][b]Why this one[/b][/size]
 [list]
-[*]Plain [b]UE4SS Lua scripts[/b] - no .exe, no .dll, nothing hidden. You can read every line.
+[*]The trainer itself is plain [b]UE4SS Lua scripts[/b] - nothing compiled. Only the Bundled file adds the official UE4SS DLLs.
 [*]Uses the game's own variables and functions, found in the game's debug symbols and Blueprint data.
-[*]Works on Windows and on Linux / Steam Deck (Proton).
+[*]Made and tested on Linux with Proton (the same Windows build of the game), so Windows should behave the same.
 [*]18 languages - the same languages as the game.
 [/list]
 
