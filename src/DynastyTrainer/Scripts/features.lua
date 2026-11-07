@@ -132,22 +132,53 @@ end
 -- Time: freeze, and skipping days by letting the game roll over midnight
 -- itself (runs the game's own end-of-day logic).
 ---------------------------------------------------------------------------
-local frozenTime
+-- Stop the flow of time with the developers' own flag on BP_TimeManager
+-- (TimeFlowStoppedByCheat). Nothing is rewritten, so time never goes back.
 function F.setFreezeTime(on)
-    S.freezeTime = on
-    frozenTime = on and game.readTime() or nil
+    local tm = game.timeManager()
+    tm.TimeFlowStoppedByCheat = on == true
+    S.freezeTime = on == true
+    log("time flow " .. (S.freezeTime and "stopped" or "resumed"))
 end
 
-local skip = { remaining = 0, day = nil }
-local function nearMidnight() game.writeTime({ hour = 23, minute = 59, second = 55 }) end
+-- Time only ever moves FORWARD: other mods (e.g. Bounty Hunting) and the game
+-- assume the calendar never goes back, and a backwards jump can break them.
+local skip = { remaining = 0, day = nil, thenHour = nil }
+local function secondsOfDay(t) return t.hour * 3600 + t.minute * 60 + t.second end
+local NEAR_MIDNIGHT = 23 * 3600 + 59 * 60 + 55
+
+local function nearMidnight()
+    if secondsOfDay(game.readTime()) < NEAR_MIDNIGHT then
+        game.writeTime({ hour = 23, minute = 59, second = 55 })
+    end
+end
 
 function F.skipDays(n)
     local tm = game.readTime()
     skip.remaining = math.max(1, math.floor(n))
     skip.day = tm.day
+    skip.thenHour = nil
     if S.freezeTime then F.setFreezeTime(false) end
     nearMidnight()
     return skip.remaining
+end
+
+-- Set the hour without going back in time: a later hour today is set at
+-- once, an earlier one means "that hour tomorrow" (via a normal midnight).
+-- Returns "today" or "tomorrow".
+function F.setHour(h)
+    h = math.floor(tonumber(h) or -1)
+    if h < 0 or h > 23 then game.fail("invalid_hour") end
+    local now = game.readTime()
+    if h * 3600 > secondsOfDay(now) then
+        game.writeTime({ hour = h, minute = 0, second = 0 })
+        log(string.format("hour %02d:%02d -> %02d:00 (today)", now.hour, now.minute, h))
+        return "today"
+    end
+    F.skipDays(1)
+    skip.thenHour = h
+    log(string.format("hour %02d:%02d -> %02d:00 tomorrow (via midnight)", now.hour, now.minute, h))
+    return "tomorrow"
 end
 
 function F.skipSeason()
@@ -162,7 +193,12 @@ local function skipTick()
     if tm.day ~= skip.day then
         skip.remaining = skip.remaining - 1
         skip.day = tm.day
-        if skip.remaining > 0 then nearMidnight() end
+        if skip.remaining > 0 then nearMidnight()
+        elseif skip.thenHour then
+            local h = skip.thenHour
+            skip.thenHour = nil
+            if h * 3600 > secondsOfDay(tm) then game.writeTime({ hour = h, minute = 0, second = 0 }) end
+        end
     end
 end
 
@@ -279,7 +315,13 @@ local function slowTick()
     if skip.remaining > 0 then
         local ok, e = pcall(skipTick); if not ok then report("skip", e); skip.remaining = 0 end
     end
-    if S.freezeTime and frozenTime then safe("time", game.writeTime, frozenTime) end
+    -- Keep the flag while frozen (the game may reset it, e.g. after sleeping).
+    if S.freezeTime then
+        safe("time", function()
+            local tm = game.timeManager()
+            if tm.TimeFlowStoppedByCheat ~= true then tm.TimeFlowStoppedByCheat = true end
+        end)
+    end
 
     if S.heraldNext then
         safe("herald", function()

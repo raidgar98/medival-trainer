@@ -340,19 +340,30 @@ function build()
         { type = "row", items = {
             number("hour", t("hour"), 8, 0, 23, true, nil, 90),
             button("setHour", t("set"), function()
-                run("time", function() game.setHour(UI.Get("time", "hour")); UI.SetLabel("time", "now", timeText()) end)
+                run("time", function()
+                    local when = F.setHour(UI.Get("time", "hour"))
+                    UI.Set("time", "freezeTime", S.freezeTime)
+                    if when == "tomorrow" then
+                        status("time", t("hour_tomorrow", { hour = string.format("%02d:00", math.floor(tonumber(UI.Get("time", "hour")) or 0)) }))
+                    else
+                        UI.SetLabel("time", "now", timeText())
+                    end
+                end)
             end, "primary"),
         } },
         { type = "row", items = {
             button("skipDay", t("skip_day"), function()
-                run("time", function() F.skipDays(1); status("time", t("skipping", { count = 1 })) end)
+                run("time", function() F.skipDays(1); UI.Set("time", "freezeTime", S.freezeTime); status("time", t("skipping", { count = 1 })) end)
             end),
             button("skipSeason", t("skip_season"), function()
-                run("time", function() local n = F.skipSeason(); status("time", t("skipping", { count = n })) end)
+                run("time", function() local n = F.skipSeason(); UI.Set("time", "freezeTime", S.freezeTime); status("time", t("skipping", { count = n })) end)
             end),
         } },
         check("freezeTime", t("freeze_time"), S.freezeTime, function(on)
-            run("time", function() F.setFreezeTime(on == true) end)
+            run("time", function()
+                F.setFreezeTime(on == true)
+                status("time", on and t("time_stopped") or t("time_resumed"))
+            end)
         end),
         number("gameSpeed", t("game_speed"), 1, 0.1, 10, false, function(v)
             run("time", function() game.setGameSpeed(tonumber(v) or 1) end)

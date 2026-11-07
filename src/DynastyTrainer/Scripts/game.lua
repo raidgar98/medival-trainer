@@ -353,12 +353,6 @@ function M.writeTime(values)
     end
 end
 
-function M.setHour(h)
-    h = math.floor(tonumber(h) or -1)
-    if h < 0 or h > 23 then fail("invalid_hour") end
-    M.writeTime({ hour = h, minute = 0, second = 0 })
-end
-
 function M.setGameSpeed(x)
     local pawn = M.player()
     M.statics():SetGlobalTimeDilation(pawn, x)

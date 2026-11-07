@@ -6,6 +6,12 @@
   e.g. villagers streaming out, before touching them. Hardening after a
   crash inside UE4SS during a Lua call (mod not identified from the stack).
 - The background tick does nothing while no option is enabled.
+- Time never moves backwards any more. Setting an hour that has already
+  passed today moves on to that hour tomorrow (through a normal midnight).
+  Moving the calendar back confused other mods (Bounty Hunting stops with
+  "Calendar moved backwards") and is the most likely trigger of the crash.
+- "Stop time" uses the game's own TimeFlowStoppedByCheat flag instead of
+  rewriting the clock every 200 ms.
 
 ## 1.0.0 - 2026-11-07
 
