@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.0.1 - 2026-11-08
+## 1.0.1 - 2026-11-07
 
 - Skip game objects the engine is destroying (PendingKill / Unreachable),
   e.g. villagers streaming out, before touching them. Hardening after a
