@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Dynasty Trainer - Nexus description</title>
+<style>
+  body { font-family: sans-serif; max-width: 760px; margin: 24px auto; padding: 0 16px; line-height: 1.45; }
+  .hint { background: #fff3c4; border: 1px solid #e0c060; padding: 8px 12px; font-size: 14px; }
+  code { background: #eee; padding: 1px 4px; }
+</style>
+</head>
+<body>
+<p class="hint">Select everything BELOW this box (Ctrl+A also selects this box - delete it after pasting) and paste it into the Nexus "Full description" editor.</p>
+
+<h2>Description</h2>
+<p><b>Dynasty Trainer</b> is an in-game trainer menu for <b>Medieval Dynasty</b> (singleplayer). Press <b>F4</b> in game and a menu opens on the left side of the screen.</p>
+<ul>
+  <li>Plain <b>UE4SS Lua scripts</b> - no .exe, nothing hidden. You can read every line (<a href="https://github.com/raidgar98/medival-trainer">source on GitHub</a>).</li>
+  <li>Uses the game's own variables and functions instead of memory hacks, so it keeps working while the game runs normally.</li>
+  <li>Works on Windows and on Linux / Steam Deck (Proton).</li>
+  <li><b>18 languages</b> - the same languages as the game.</li>
+</ul>
+
+<h2>Installation instructions</h2>
+<p><b>Easiest - Bundled file</b> (contains UE4SS, ModMenu and the trainer):</p>
+<ol>
+  <li>Steam &gt; Medieval Dynasty &gt; Manage &gt; Browse local files.</li>
+  <li>Extract <code>DynastyTrainer-1.0.0-Bundled.zip</code> there and merge the <code>Medieval_Dynasty</code> folder.</li>
+  <li>Load a save and press F4.</li>
+</ol>
+<p>Do not use the Bundled file if you already have UE4SS installed - it would overwrite your UE4SS settings. Use the regular file instead:</p>
+<ol>
+  <li>Install UE4SS into <code>Medieval_Dynasty\Binaries\Win64</code> and set <code>EngineVersionOverride</code> to 4 / 27 / false in <code>UE4SS-settings.ini</code>.</li>
+  <li>Extract ModMenu.zip into <code>Win64\ue4ss\Mods</code>.</li>
+  <li>Extract <code>DynastyTrainer-1.0.0.zip</code> into the game folder and merge folders.</li>
+</ol>
+<p><b>Linux / Steam Deck:</b> add this to the game's Steam launch options: <code>WINEDLLOVERRIDES="dwmapi=n,b" %command%</code>. On the Steam Deck bind F4 to a button in Steam Input. More in <code>LINUX-STEAMDECK-PROTON.txt</code> inside the archive.</p>
+
+<h2>Main features</h2>
+<p><b>Player</b></p>
+<ul>
+  <li>Unlimited health (the game's own GodMode flag), unlimited stamina</li>
+  <li>Never hungry, never thirsty</li>
+  <li>No poison, intoxication or dirt</li>
+  <li>Unlimited carry weight</li>
+  <li>Cold and heat protection (comfortable temperature range)</li>
+  <li>Heal fully, max health +25%, set age</li>
+  <li>Skill points (+10 / +100) and max skill level - per skill or all</li>
+</ul>
+<p><b>Inventory</b></p>
+<ul>
+  <li>Add coins (quick buttons or any amount)</li>
+  <li>Add any item - searchable list with names in your game language</li>
+</ul>
+<p><b>World</b></p>
+<ul>
+  <li>Set the hour, skip a day or a season (the game rolls over midnight itself, so daily logic runs normally), stop time, game speed</li>
+  <li>Dynasty reputation +1,000 / +10,000</li>
+  <li>Technology points (Building, Production, Farming, Survival)</li>
+  <li>Override the villager limit (until game restart)</li>
+  <li>Max skills (10) for all villagers of your settlement</li>
+  <li>Max affection of the nearest villager</li>
+  <li>King's herald: call him now with a chosen challenge, or make him come next season</li>
+</ul>
+<p><b>Movement</b></p>
+<ul>
+  <li>Speed, jump and gravity multipliers</li>
+  <li>Flying and no clip (Space = up, C = down)</li>
+  <li>Field of view</li>
+  <li>Teleport to any village (lands on walkable ground), save / return to a position</li>
+</ul>
+<p><b>Settings</b></p>
+<ul>
+  <li>Language, menu key (F4, F2, F11 or End), diagnostics file for bug reports</li>
+</ul>
+<p><b>Good to know</b></p>
+<ul>
+  <li><b>Singleplayer only.</b> Not for co-op.</li>
+  <li>The menu does not open during conversations or while a game window is open - this protects the dialogue UI.</li>
+  <li>Toggles reset when you restart the game. Things you add (coins, items, skills, reputation...) are saved with your game - <b>back up your saves</b>.</li>
+  <li>Tested on Steam build 25776186 (November 2026). Works together with Dynasty Under Siege Plus, Dynasty Bounty Hunting and Trajectory Preview.</li>
+  <li>Bug reports: please attach <code>ue4ss\UE4SS.log</code> and, if possible, the file from Settings &gt; "Write diagnostics file".</li>
+</ul>
+
+<h2>Requirements</h2>
+<ul>
+  <li><b>Bundled file:</b> nothing else needed.</li>
+  <li><b>Regular file:</b> <a href="https://github.com/UE4SS-RE/RE-UE4SS/releases/tag/experimental">UE4SS</a> (tested with UE4SS_v3.0.1-1185-gdff435dd) and <a href="https://github.com/mattdavida/ue4ss-ModMenu/releases/tag/v1.4.0">ModMenu v1.4.0</a>.</li>
+  <li>Keep CheatManagerEnablerMod (part of UE4SS) enabled - flying and no clip need it.</li>
+</ul>
+
+<h2>Shout outs</h2>
+<ul>
+  <li><a href="https://github.com/mattdavida/ue4ss-ModMenu">ModMenu</a> by Matthew Arvidson (mattdavida) - the menu library (MIT).</li>
+  <li>The <a href="https://github.com/UE4SS-RE/RE-UE4SS">UE4SS</a> team (MIT).</li>
+  <li>The authors of Dynasty Under Siege Plus, Dynasty Bounty Hunting and Trajectory Preview - their open Lua code showed how to talk to the game.</li>
+  <li>Made with the help of an AI coding assistant.</li>
+</ul>
+</body>
+</html>
