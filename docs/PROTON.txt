@@ -1,0 +1,61 @@
+DYNASTY TRAINER ON LINUX / STEAM DECK (PROTON)
+
+Medieval Dynasty has no native Linux build; it runs through Steam Play
+(Proton). UE4SS and this trainer work there too. Tested on desktop Linux with
+Steam's default Proton, November 2026.
+
+1. INSTALL
+   Steam > Medieval Dynasty > Manage > Browse local files opens the game
+   folder (usually ~/.local/share/Steam/steamapps/common/Medieval Dynasty).
+   Extract the archive there as described in INSTALLATION.txt.
+   The Bundled archive already contains UE4SS; the regular one needs UE4SS
+   installed separately.
+
+2. LAUNCH OPTIONS (required)
+   Steam > Medieval Dynasty > Properties > General > Launch options:
+
+     WINEDLLOVERRIDES="dwmapi=n,b" %command%
+
+   Why: UE4SS loads through its own dwmapi.dll next to the game exe. Wine
+   uses its built-in dwmapi by default; "n,b" tells it to load the native
+   (UE4SS) one first and fall back to the built-in one.
+
+   If you also use Trajectory Preview, it needs -fileopenlog:
+     WINEDLLOVERRIDES="dwmapi=n,b" %command% -fileopenlog
+
+3. CHECK THAT IT LOADED
+   Start the game once, then open
+     Medieval_Dynasty/Binaries/Win64/ue4ss/UE4SS.log
+   You should see:  Starting Lua mod 'DynastyTrainer'
+   and              [DynastyTrainer] menu ready
+   No UE4SS.log at all means the launch option is missing or mistyped.
+
+4. STEAM DECK
+   - Press F4 in game. The Deck has no F keys: bind one in Steam Input
+     (controller settings > a back button or a trackpad region > Keyboard >
+     F4). The menu key can be changed in the trainer's Settings tab
+     (F2, F4, F11 or End).
+   - The menu is used with the mouse cursor (trackpad works).
+
+5. WHERE THINGS ARE
+   Saves and game config live inside the Proton prefix:
+     ~/.local/share/Steam/steamapps/compatdata/1129580/pfx/drive_c/users/
+       steamuser/AppData/Local/Medieval_Dynasty/Saved/
+         SaveGames/   your saves - back them up before using a trainer
+         Logs/        Medieval_Dynasty.log (crash details)
+   Trainer files: Medieval_Dynasty/Binaries/Win64/ue4ss/Mods/DynastyTrainer/
+     config.json      language and menu key
+     diagnostics.txt  written by Settings > "Write diagnostics file"
+
+6. COMMON PROBLEMS
+   - Game is in English and there is no language option in the game:
+     the game takes its language from Steam. Steam > Medieval Dynasty >
+     Properties > General > Language. Or add -culture=pl (de, fr, ...) at the
+     end of the launch options.
+   - Black screen / crash at start right after installing UE4SS: check that
+     UE4SS-settings.ini has EngineVersionOverride 4 / 27 / false (the Bundled
+     archive sets this already).
+   - Flying and no clip do nothing: CheatManagerEnablerMod (part of UE4SS)
+     must stay enabled in ue4ss/Mods/mods.txt.
+   - Times in UE4SS.log and Medieval_Dynasty.log are UTC; your save file
+     times are local time.

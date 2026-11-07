@@ -1,0 +1,13 @@
+THIRD-PARTY COMPONENTS (regular archive)
+
+This archive contains only Dynasty Trainer. Required separately:
+
+UE4SS (RE-UE4SS) - MIT License
+  https://github.com/UE4SS-RE/RE-UE4SS
+  Tested build: UE4SS_v3.0.1-1185-gdff435dd
+
+ModMenu v1.4.0 - Copyright (c) 2026 Matthew Arvidson (GitHub: mattdavida), MIT License
+  https://github.com/mattdavida/ue4ss-ModMenu
+
+This mod does not contain or redistribute any files of Medieval Dynasty.
+It only uses the game's own objects and data at runtime.

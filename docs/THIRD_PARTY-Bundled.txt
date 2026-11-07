@@ -1,0 +1,17 @@
+THIRD-PARTY COMPONENTS (Bundled archive)
+
+UE4SS (RE-UE4SS) build v3.0.1-1185-gdff435dd - MIT License
+  Copyright (c) 2022 Narknon and UE4SS contributors
+  Full license: Medieval_Dynasty\Binaries\Win64\ue4ss\LICENSE
+  https://github.com/UE4SS-RE/RE-UE4SS
+  Included unchanged from the official UE4SS_v3.0.1-1185-gdff435dd.zip
+  (SHA-256 67b81fca6a3eb6e24fe5117d2e390fdc19d49af46dad9500d08106bf9a190d31),
+  except UE4SS-settings.ini: EngineVersionOverride set to 4 / 27 / false.
+
+ModMenu v1.4.0 - Copyright (c) 2026 Matthew Arvidson (GitHub: mattdavida)
+  MIT License - full text in ue4ss\Mods\shared\ModMenu\LICENSE.txt
+  https://github.com/mattdavida/ue4ss-ModMenu
+  Included unchanged (same file as the official ModMenu.zip of v1.4.0).
+
+This mod does not contain or redistribute any files of Medieval Dynasty.
+It only uses the game's own objects and data at runtime.

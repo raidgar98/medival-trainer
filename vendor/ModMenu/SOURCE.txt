@@ -1,0 +1,5 @@
+ModMenu v1.4.0 - copyright (c) 2026 Matthew Arvidson (GitHub: mattdavida)
+MIT License, see LICENSE in this folder.
+https://github.com/mattdavida/ue4ss-ModMenu/releases/tag/v1.4.0
+Official ModMenu.zip SHA-256: ba3856316417aa8dacf7b5242bba22346fe64e5cee1dcdebcb9bb0a08521c1f5
+Bundled unchanged at ue4ss/Mods/shared/ModMenu/ModMenu.lua.

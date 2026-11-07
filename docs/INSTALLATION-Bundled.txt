@@ -1,0 +1,32 @@
+DYNASTY TRAINER - INSTALLATION (Bundled archive)
+Medieval Dynasty, singleplayer (Oxbow)
+
+This archive contains everything: UE4SS v3.0.1-1185-gdff435dd (already set up
+for Medieval Dynasty), ModMenu v1.4.0 and the trainer.
+
+!! If UE4SS is ALREADY installed (other UE4SS mods), use the regular archive
+!! instead - this one would overwrite your UE4SS files and settings.
+
+1. Close the game.
+
+2. Open the game folder (Steam > Medieval Dynasty > Manage > Browse local files)
+   and extract this archive there, merging the Medieval_Dynasty folder.
+
+   Result:
+     Medieval_Dynasty\Binaries\Win64\dwmapi.dll
+     Medieval_Dynasty\Binaries\Win64\ue4ss\UE4SS.dll
+     Medieval_Dynasty\Binaries\Win64\ue4ss\Mods\DynastyTrainer\Scripts\main.lua
+     Medieval_Dynasty\Binaries\Win64\ue4ss\Mods\shared\ModMenu\ModMenu.lua
+
+3. Linux / Steam Deck only: add the launch option from
+   LINUX-STEAMDECK-PROTON.txt. Windows needs nothing else.
+
+4. Start the game, load a save and press F4.
+
+UNINSTALL
+   Delete Win64\dwmapi.dll and the Win64\ue4ss folder.
+
+TROUBLESHOOTING
+   Look for lines starting with [DynastyTrainer] in Win64\ue4ss\UE4SS.log.
+   Settings > "Write diagnostics file" saves Mods\DynastyTrainer\diagnostics.txt,
+   which helps with bug reports.

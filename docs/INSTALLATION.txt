@@ -1,0 +1,54 @@
+DYNASTY TRAINER - INSTALLATION (regular archive)
+Medieval Dynasty, singleplayer (Oxbow)
+
+Want everything in one archive? Use DynastyTrainer-<version>-Bundled.zip
+instead (contains UE4SS and ModMenu) - see its INSTALLATION.txt.
+
+1. Close the game.
+
+2. REQUIREMENT: UE4SS
+   Tested build: UE4SS_v3.0.1-1185-gdff435dd.zip
+   https://github.com/UE4SS-RE/RE-UE4SS/releases/tag/experimental
+
+   Extract it into:  Medieval_Dynasty\Binaries\Win64
+   (dwmapi.dll must sit next to Medieval_Dynasty-Win64-Shipping.exe)
+
+   In Win64\ue4ss\UE4SS-settings.ini set:
+     [EngineVersionOverride]
+     MajorVersion = 4
+     MinorVersion = 27
+     DebugBuild = false
+
+   Keep CheatManagerEnablerMod enabled in ue4ss\Mods\mods.txt (UE4SS
+   default) - flying and no clip need it.
+   Skip this step if you already use other UE4SS mods for Medieval Dynasty.
+
+3. REQUIREMENT: ModMenu v1.4.0 (shared menu library, MIT)
+   https://github.com/mattdavida/ue4ss-ModMenu/releases/tag/v1.4.0
+   Download ModMenu.zip and extract it into Win64\ue4ss\Mods
+   Result: Win64\ue4ss\Mods\shared\ModMenu\ModMenu.lua
+   Skip if another mod already installed it (e.g. Dynasty Under Siege Plus).
+
+4. Open the game folder (Steam > Medieval Dynasty > Manage > Browse local files)
+   and extract this archive there, merging the Medieval_Dynasty folder.
+
+   Result:
+     Medieval_Dynasty\Binaries\Win64\ue4ss\Mods\DynastyTrainer\Scripts\main.lua
+     Medieval_Dynasty\Binaries\Win64\ue4ss\Mods\DynastyTrainer\enabled.txt
+
+   The mod is enabled by enabled.txt. If ue4ss\Mods\mods.txt lists
+   "DynastyTrainer : 0", change it to 1 (or remove the line).
+
+5. Start the game, load a save and press F4.
+
+LINUX / STEAM DECK: see LINUX-STEAMDECK-PROTON.txt (one launch option needed).
+
+UNINSTALL
+   Delete ue4ss\Mods\DynastyTrainer. Keep UE4SS and shared\ModMenu if other
+   mods use them.
+
+TROUBLESHOOTING
+   Look for lines starting with [DynastyTrainer] in Win64\ue4ss\UE4SS.log.
+   "ModMenu not found" there means step 3 is missing.
+   Settings > "Write diagnostics file" saves Mods\DynastyTrainer\diagnostics.txt,
+   which helps with bug reports.
